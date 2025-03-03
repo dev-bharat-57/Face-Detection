@@ -1,7 +1,4 @@
-#data gathering for each individul
-# make sure you are in the project directory
-#import os
-#os.chdir("c:/Users/.../project")
+
 
 import cv2
 detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')

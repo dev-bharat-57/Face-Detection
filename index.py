@@ -24,11 +24,12 @@ class FaceDetectionApp:
             self.recognizer.read("trainer.yml")
 
         # Names and roles
-        self.names = ['None', 'Bharat', 'Mamatha']
+        self.names = ['None', 'Bharat', 'Mamatha','Prasad']
         self.roles = {
             'None': 'Unknown person',
             'Bharat': 'Software Engineer - Expert in AI and Computer Vision',
-            'Mamatha': 'Data Scientist - Specializes in Machine Learning'
+            'Mamatha': 'Data Scientist - Specializes in Machine Learning',
+            'Prasad' : 'Full Stack Developer'
         }
 
         self.running = False

@@ -31,11 +31,14 @@ def imgsandlables(path):
 faces, ids = imgsandlables(path)
 recognizer.train(faces, np.array(ids))
 
-names = ['None', 'Bharat', 'Mamatha']
+names = ['None', 'Bharat', 'Mamatha','Prasad','Aravind']
 roles = {
     'None': 'Unknown person',
     'Bharat': 'Software Engineer - Expert in AI and Computer Vision',
-    'Mamatha': 'Data Scientist - Specializes in Machine Learning'
+    'Mamatha': 'Data Scientist - Specializes in Machine Learning',
+    'Prasad' : 'Full Stack Developer',
+    'Aravind': 'Kdl Intern'
+
 }
 
 cam = cv2.VideoCapture(0)
@@ -66,11 +69,14 @@ while True:
         cv2.putText(img, name, (x - 5, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
         cv2.putText(img, confidence_text, (x + 5, y + h - 5), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
         cv2.putText(img, role_text, (x - 5, y + h + 25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
-        
-    if detected_id and detected_id != current_id:  # Speak only when a new person is detected
-        speak(f"Hello {detected_id}, {roles.get(detected_id, '')}")
-        current_id = detected_id
-    
+
+    if detected_id:
+        if detected_id != current_id:
+            speak(f"Hello {detected_id}, {roles.get(detected_id, '')} Welcome To F9 17th Anniversary")
+        current_id = detected_id  # Update last detected ID
+    else:
+        current_id = None  # Reset when no faces are detected
+
     cv2.imshow('camera', img)
     
     k = cv2.waitKey(10) & 0xff
@@ -79,3 +85,4 @@ while True:
 
 cam.release()
 cv2.destroyAllWindows()
+
